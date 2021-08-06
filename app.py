@@ -3,7 +3,7 @@
 
 from flask import (render_template, 
                     url_for, request, redirect)
-from models import (db, Project, app)
+from models import (db, Project, app, datetime)
 
 
 #Homepage
@@ -13,7 +13,7 @@ def index():
     return render_template('index.html', projects=projects)
 
 
-@app.route('/create', methods=['GET', 'POST'])
+@app.route('/new', methods=['GET', 'POST'])
 def create():
     if request.form:
         new_project = Project(title=request.form['title'], date=request.form['date'], description=request.form['desc'], skills=request.form['skills'], project_link=request.form['github'])
@@ -45,17 +45,6 @@ def delete(id):
 @app.route('/about')
 def about():
     return render_template('about.html')
-
-
-
-
-
-
-
-
-
-
-
 
 
 
