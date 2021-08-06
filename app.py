@@ -34,9 +34,12 @@ def edit(id):
     return render_template('edit.html')
 
 
-@app.route('/<id>/delete')
+@app.route('/delete/<id>')
 def delete(id):
-    return render_template('delete.html')
+    project = Project.query.get(id)
+    db.session.delete(project)
+    db.session.commit()
+    return redirect(url_for('index'))
 
 
 @app.route('/about')
