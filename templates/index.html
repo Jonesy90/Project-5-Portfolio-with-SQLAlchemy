@@ -14,7 +14,7 @@
         <section class="navigation">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Student Name</a>
+                  <a class="navbar-brand" href="#">Michael Jones</a>
                   <button class="toggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                   </button>
@@ -34,10 +34,10 @@
                           Projects
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="#project1">Project 1</a></li>
-                          <li><a class="dropdown-item" href="#project2">Project 2</a></li>
-                          <li><a class="dropdown-item" href="#project3">Project 3</a></li>
-                          <li><a class="dropdown-item" href="#project4">Project 4</a></li>
+                            <li><a class="dropdown-item" href="#project1">Project 1</a></li>
+                            <li><a class="dropdown-item" href="#project2">Project 2</a></li>
+                            <li><a class="dropdown-item" href="#project3">Project 3</a></li>
+                            <li><a class="dropdown-item" href="#project4">Project 4</a></li>
                         </ul>
                       </li>
                       <li class="nav-item">
@@ -59,11 +59,8 @@
         <section id="about">
             <h2>About Me</h2>
             <p>
-                Pastry wafer chocolate cake caramels. 
-                Gummi bears pudding sugar plum macaroon. 
-                Cake tart apple pie soufflé sweet sweet. 
-                Topping bear claw lemon drops gingerbread 
-                biscuit pudding fruitcake icing chocolate bar.
+                My name is Michael Jones. I currently work at Virgin Media as an Advertising Operations Manager and over the last 3-4 months I've been teaching myself
+                Python, HTML, CSS, Flask, SQLAlchemy and Git. With this, I'm hoping to move careers into the life of back-end software develop.
             </p>
             <div id="triangle1"></div>
             <div id="triangle2"></div>
@@ -83,69 +80,24 @@
             <div id="triangle3"></div>
             <i class="fas fa-file-code"></i>
             <h2>Projects</h2>
-            <div id="project-list">
-                <div id="project1" class="a-project">
-                    <h3>Project Title</h3>
-                    <a href="#" class="github-btn">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
-                    <p>
-                        Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
-                    </p>
-                    <p>
-                        Skills: Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
-                    </p>
+            {% for project in projects %}
+                <div id="project-list">
+                    <div id="project1" class="a-project">
+                        <h3><a href="{{ url_for('detail', id=project.id )}}">{{ project.title }}</a></h3>
+                        <a href="{{ project.project_link }}" class="github-btn">
+                            <i class="fab fa-github"></i>
+                            View on GitHub
+                        </a>
+                        <p>
+                            {{ project.description }}
+                        </p>
+                        <p>
+                            {{ project.skills }}
+                        </p>
+                    </div>
                 </div>
-                <div id="project2" class="a-project">
-                    <h3>Project Title</h3>
-                    <a href="#" class="github-btn">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
-                    <p>
-                        Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
-                    </p>
-                    <p>
-                        Skills: Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
-                    </p>
-                </div>
-                <div id="project3" class="a-project">
-                    <h3>Project Title</h3>
-                    <a href="#" class="github-btn">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
-                    <p>
-                        Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
-                    </p>
-                    <p>
-                        Skills: Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
-                    </p>
-                </div>
-                <div id="project4" class="a-project">
-                    <h3>Project Title</h3>
-                    <a href="#" class="github-btn">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
-                    <p>
-                        Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
-                    </p>
-                    <p>
-                        Skills: Pastry wafer chocolate cake caramels. 
-                        Gummi bears pudding sugar plum macaroon. 
-                    </p>
-                </div>
-            </div>
-            <div id="triangle4"></div>
+                <div id="triangle4"></div>
+            {% endfor %}
         </section>
         <section id="contact">
             <i class="fas fa-paper-plane"></i>

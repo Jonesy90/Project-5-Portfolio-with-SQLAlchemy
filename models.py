@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column('Title', db.String())
-    date = db.Column('Date', db.DateTime)
+    date = db.Column('Date', db.String()) #This needs to be DateTime.
     description = db.Column('Description', db.String())
     skills = db.Column('Skills', db.String())
     project_link = db.Column('URL', db.String())
@@ -21,7 +21,5 @@ class Project(db.Model):
                     Date: {self.date}
                     Description: {self.description}
                     Skills: {self.skills}
-                    Project Link: {self.project_link})
-        
-        '''
+                    Project Link: {self.project_link})'''
 

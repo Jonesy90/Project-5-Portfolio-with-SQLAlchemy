@@ -9,17 +9,24 @@ from models import (db, Project, app)
 #Homepage
 @app.route('/')
 def index():
-    return render_template('index.html')
+    projects = Project.query.all()
+    return render_template('index.html', projects=projects)
 
 
-@app.route('/create')
+@app.route('/create', methods=['GET', 'POST'])
 def create():
+    if request.form:
+        new_project = Project(title=request.form['title'], date=request.form['date'], description=request.form['desc'], skills=request.form['skills'], project_link=request.form['github'])
+        db.session.add(new_project)
+        db.session.commit()
+        return redirect(url_for('index'))
     return render_template('projectform.html')
 
 
-@app.route('/<id>')
+@app.route('/detail/<id>')
 def detail(id):
-    return render_template('detail.html')
+    project = Project.query.get(id)
+    return render_template('detail.html', project=project)
 
 
 @app.route('/<id>/edit')
