@@ -2,38 +2,26 @@
 
 {% block content %}
     <section class="header">
-        <h1>{{ project.title }}</h1>
-        <p>{{ project.date }}</p>
-        <a href="{{ project.project_link }}" class="github-btn">
-            <i class="fab fa-github"></i>
-            View on GitHub
-        </a>
-        <ul class="project-skills">
+        <h1>New Project</h1>
+    </section>
+    <section id="form">
+        <form action="{{ url_for('edit', id=project.id) }}" method="POST">
+            <label for="title">Project Title</label>
+            <input type="text" name="title" id="title" placeholder="Project Name" required>
+            <label for="date">Completion Date</label>
+            <input type="month" name="date" id="date" placeholder="06/08/2021" required>
+            <label for="description">Description</label>
+            <textarea name="desc" id="description" cols="30" rows="20" placeholder="Description" required></textarea>
+            <label for="skills-list" id="skills-label">Skills</label>
+            <p>Separate each skill by a comma</p>
+            <textarea name="skills" id="skills-list" cols="30" rows="10" placeholder="Skill, Skill" required></textarea>
+            <label for="github">GitHub Link</label>
+            <input type="url" name="github" id="github" placeholder="Link to the repo" required>
             <div>
-                <li>Catching exceptions</li>
-                <li>Creating a loop</li>
-                <li>Accepting user input</li>
-                <li>Conditional statements</li>
+                <button type="reset">Cancel</button>
+                <button type="submit">Submit</button>
             </div>
-        </ul>
-    </section>
-    <section id="project-desc">
-        <div id="triangle5"></div>
-        <h2>Description</h2>
-        <p>
-            {{ project.description }}
-        </p>
-        <div id="triangle6"></div>
-    </section>
-    <section id="edit-delete">
-        <a href="{{ url_for('edit', id=project.id) }}">
-            <i class="fas fa-edit"></i>
-            Edit
-        </a>
-        <a href="{{ url_for('delete', id=project.id) }}">
-            <i class="far fa-trash-alt"></i>
-            Delete
-        </a>
+        </form>
     </section>
     <section class="footer">
         <div class="socials">

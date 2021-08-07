@@ -29,9 +29,18 @@ def detail(id):
     return render_template('detail.html', project=project)
 
 
-@app.route('/<id>/edit')
+@app.route('/edit/<id>', methods=['GET', 'POST'])
 def edit(id):
-    return render_template('edit.html')
+    project = Project.query.get(id)
+    if request.form:
+        project.name = request.form['title']
+        project.date = request.form['date']
+        project.description = request.form['desc']
+        project.skills = request.form['skills']
+        project.project_link = request.form['github']
+        db.commit()
+        return redirect(url_for('index'))
+    return render_template('edit_project.html')
 
 
 @app.route('/delete/<id>')
