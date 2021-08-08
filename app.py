@@ -16,7 +16,9 @@ def index():
 @app.route('/new', methods=['GET', 'POST'])
 def create():
     if request.form:
-        new_project = Project(title=request.form['title'], date=request.form['date'], description=request.form['desc'], skills=request.form['skills'], project_link=request.form['github'])
+        # date = datetime.date(request.form['date'])
+        # new_date = date.strftime('%d-%m=%Y')
+        new_project = Project(title=request.form['title'], date=datetime.date(request.form['date']).strftime('%d-%m-%Y'), description=request.form['desc'], skills=request.form['skills'], project_link=request.form['github'])
         db.session.add(new_project)
         db.session.commit()
         return redirect(url_for('index'))
@@ -54,7 +56,6 @@ def delete(id):
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 
 
