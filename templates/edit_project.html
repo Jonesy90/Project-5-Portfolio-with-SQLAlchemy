@@ -11,10 +11,10 @@
             <label for="date">Completion Date</label>
             <input type="month" name="date" id="date" placeholder="06/08/2021" value="{{ project.date.strftime('%d/%m/%Y') }}" required>
             <label for="description">Description</label>
-            <textarea name="desc" id="description" cols="30" rows="20" placeholder="Description" value="{{ project.description }}" required></textarea>
+            <textarea name="desc" id="description" cols="30" rows="20" placeholder="Description" required>{{ project.description }}</textarea>
             <label for="skills-list" id="skills-label">Skills</label>
             <p>Separate each skill by a comma</p>
-            <textarea name="skills" id="skills-list" cols="30" rows="10" placeholder="Skill, Skill" value="{{ project.skills }}" required></textarea>
+            <textarea name="skills" id="skills-list" cols="30" rows="10" placeholder="Skill, Skill" required>{{ project.skills }}</textarea>
             <label for="github">GitHub Link</label>
             <input type="url" name="github" id="github" placeholder="Link to the repo" value="{{ project.project_link }}" required>
             <div>

@@ -42,7 +42,7 @@ def edit(id):
     project = Project.query.get(id)
     if request.form:
         project.title = request.form['title']
-        project.date = request.form['date']
+        project.date = datetime.datetime.strptime(request.form['date'], '%d/%m/%Y')
         project.description = request.form['desc']
         project.skills = request.form['skills']
         project.project_link = request.form['github']
