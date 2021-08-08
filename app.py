@@ -26,8 +26,9 @@ def create():
 @app.route('/detail/<id>')
 def detail(id):
     project = Project.query.get(id)
+    projects = Project.query.all()
     skills = project.skills.split(", ")
-    return render_template('detail.html', project=project, skills=skills)
+    return render_template('detail.html', project=project, skills=skills, projects=projects)
 
 
 @app.route('/edit/<id>', methods=['GET', 'POST'])
@@ -54,7 +55,8 @@ def delete(id):
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    projects = Project.query.all()
+    return render_template('about.html', projects=projects)
 
 
 
