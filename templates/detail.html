@@ -3,15 +3,17 @@
 {% block content %}
     <section class="header">
         <h1>{{ project.title }}</h1>
-        <p>{{ project.date.strftime('%d/%m/%Y') }}</p>
+        <p>{{ project.date.strftime('%d-%m-%Y') }}</p>
         <a href="{{ project.project_link }}" class="github-btn">
             <i class="fab fa-github"></i>
             View on GitHub
         </a>
         <ul class="project-skills">
-            <div>
-                <li>###</li>
-            </div>
+            {% for skill in skills %}
+                <div>
+                    <li>{{ skill }}</li>
+                </div>
+            {% endfor %}
         </ul>
     </section>
     <section id="project-desc">
