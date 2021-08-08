@@ -18,7 +18,7 @@ def create():
     if request.form:
         # date = datetime.date(request.form['date'])
         # new_date = date.strftime('%d-%m=%Y')
-        new_project = Project(title=request.form['title'], date=datetime.date(request.form['date']).strftime('%d-%m-%Y'), description=request.form['desc'], skills=request.form['skills'], project_link=request.form['github'])
+        new_project = Project(title=request.form['title'], date=datetime.datetime.strptime(request.form['date'], '%d/%m/%Y').date(), description=request.form['desc'], skills=request.form['skills'], project_link=request.form['github'])
         db.session.add(new_project)
         db.session.commit()
         return redirect(url_for('index'))
