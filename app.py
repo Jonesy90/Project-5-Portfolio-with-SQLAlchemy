@@ -14,7 +14,6 @@ def index():
         skills.append(project.skills.split(", "))
     all_skills = list(itertools.chain.from_iterable(skills))
     all_skills = list(dict.fromkeys(all_skills))
-    print(f'Skills: ', all_skills)
     return render_template('index.html', projects=projects, skills=all_skills)
 
 #A route to the 'create project' page.
