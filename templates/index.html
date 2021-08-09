@@ -3,7 +3,7 @@
 {% block content%}
     <section class="header">
         <h1>Pythonista</h1>
-        <p>A short one-liner about your love of coding.</p>
+        <p>I like the challenge and puzzle of programming.</p>
         <img src="{{url_for('static', filename='profile_picture.JPG')}}" alt="Headshot of myself">
     </section>
     <section id="about">
@@ -19,7 +19,9 @@
         <i class="fas fa-laptop-code"></i>
         <h2>Skills</h2>
         <ul>
-            <li>Test</li>
+            {% for skill in skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
         </ul>
     </section>
     <section id="projects">

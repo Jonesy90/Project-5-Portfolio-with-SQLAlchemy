@@ -1,16 +1,21 @@
 #Creating Virtual Enviroment: python3 -m venv env
 #Activating Virtual Enviroment: source ./env/bin/activate
-
+import itertools
 from flask import (render_template, 
                     url_for, request, redirect)
 from models import (db, Project, app, datetime)
 
-
 #Homepage
-@app.route('/')
+@app.route('/') 
 def index():
     projects = Project.query.all()
-    return render_template('index.html', projects=projects)
+    skills = []
+    for project in projects:
+        skills.append(project.skills.split(", "))
+    all_skills = list(itertools.chain.from_iterable(skills))
+    all_skills = list(dict.fromkeys(all_skills))
+    print(f'Skills: ', all_skills)
+    return render_template('index.html', projects=projects, skills=all_skills)
 
 #A route to the 'create project' page.
 #Takes the values supplied by user in the form and creates a Project object, which is then sent to the database.
