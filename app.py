@@ -34,7 +34,7 @@ def create():
 #On this page, the user can decide to update or delete the project.
 @app.route('/detail/<id>')
 def detail(id):
-    project = Project.query.get(id)
+    project = Project.query.get_or_404(id)
     projects = Project.query.all()
     skills = project.skills.split(", ")
     return render_template('detail.html', project=project, skills=skills, projects=projects)
@@ -44,7 +44,7 @@ def detail(id):
 #This has an identical form as the 'create' page but it will override any all the values.
 @app.route('/edit/<id>', methods=['GET', 'POST'])
 def edit(id):
-    project = Project.query.get(id)
+    project = Project.query.get_or_404(id)
     if request.form:
         project.title = request.form['title']
         project.date = datetime.datetime.strptime(request.form['date'], '%d/%m/%Y')
@@ -58,7 +58,7 @@ def edit(id):
 
 @app.route('/delete/<id>')
 def delete(id):
-    project = Project.query.get(id)
+    project = Project.query.get_or_404(id)
     db.session.delete(project)
     db.session.commit()
     return redirect(url_for('index'))
@@ -69,6 +69,10 @@ def about():
     projects = Project.query.all()
     return render_template('about.html', projects=projects)
 
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html', msg=error), 404
 
 
 if __name__ == '__main__':
