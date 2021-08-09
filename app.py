@@ -55,6 +55,7 @@ def edit(id):
     return render_template('edit_project.html', project=project)
 
 
+#A route to allow the user to delete an entire 'project' entry from the database.
 @app.route('/delete/<id>')
 def delete(id):
     project = Project.query.get_or_404(id)
@@ -63,12 +64,14 @@ def delete(id):
     return redirect(url_for('index'))
 
 
+#A route to take the user to the 'about.html' page.
 @app.route('/about')
 def about():
     projects = Project.query.all()
     return render_template('about.html', projects=projects)
 
 
+#A route to handle any error that may occur, if something can't be found a 404 error will execute.
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html', msg=error), 404
