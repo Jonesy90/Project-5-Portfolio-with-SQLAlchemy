@@ -3,7 +3,7 @@
 {% block content %}
     <section class="header">
         <h1>{{ project.title }}</h1>
-        <p>{{ project.date.strftime('%d-%m-%Y') }}</p>
+        <p>{{ project.date.strftime('%Y-%m') }}</p>
         <a href="{{ project.project_link }}" class="github-btn">
             <i class="fab fa-github"></i>
             View on GitHub
